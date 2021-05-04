@@ -1,6 +1,7 @@
-import { environment } from "./../../environments/environment";
+import { Observable } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 import { User } from "./userInterface";
 
 @Injectable({
@@ -13,10 +14,7 @@ export class AuthServiceService {
     this.userUrl = environment.serverURL + environment.userUrl;
   }
 
-
-
-  signUp(name: string, email: string, password: string, role?: string) {
-    
+  signUp(name: string, email: string, password: string, role?: string): Observable<any> {
     const userObj: User = {
       name: name,
       email: email,
@@ -35,7 +33,7 @@ export class AuthServiceService {
     );
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): Observable<any> {
     return this.http.post(
       this.userUrl + "/login",
       { email: email, password: password },
@@ -47,7 +45,7 @@ export class AuthServiceService {
     );
   }
 
-  logout() {
+  logout(): Observable<any> {
     return this.http.post(
       this.userUrl + "/logout",
       {},

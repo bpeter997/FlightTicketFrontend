@@ -1,3 +1,4 @@
+import { AvailableTicketsByFlightComponent } from './components/available-tickets-by-flight/available-tickets-by-flight.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FlightComponent } from './components/flight/flight.component';
 import { SignUpComponent } from './components/signup/register.component';
@@ -9,7 +10,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'signin' },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'flights', component: FlightComponent, canActivate: [AuthGuard] }
+  { path: 'flights', component: FlightComponent, canActivate: [AuthGuard] },
+  { path: 'tickets', component: AvailableTicketsByFlightComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -1,1 +1,53 @@
-<p>flight works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="From">
+    <th mat-header-cell *matHeaderCellDef>From</th>
+    <td mat-cell *matCellDef="let flight">{{ flight.from }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="To">
+    <th mat-header-cell *matHeaderCellDef>To</th>
+    <td mat-cell *matCellDef="let flight">{{ flight.to }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Start">
+    <th mat-header-cell *matHeaderCellDef>Start</th>
+    <td mat-cell *matCellDef="let flight">
+      {{ flight.start | date: "medium" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Arrive">
+    <th mat-header-cell *matHeaderCellDef>Arrive</th>
+    <td mat-cell *matCellDef="let flight">
+      {{ flight.arrive | date: "medium" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Airplane">
+    <th mat-header-cell *matHeaderCellDef>Airplane</th>
+    <td mat-cell *matCellDef="let flight">
+      <div *ngFor="let airplane of flight.airplane">
+        {{ airplane.type }}
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Airline">
+    <th mat-header-cell *matHeaderCellDef>Airline</th>
+    <td mat-cell *matCellDef="let flight">
+      <div *ngFor="let airline of flight.airline">
+        {{ airline.name }}
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Tickets">
+    <th mat-header-cell *matHeaderCellDef>Tickets</th>
+    <td mat-cell *matCellDef="let flight">
+        <mat-icon (click)="openTicketsPage(flight)" class="mat-icon-rtl-mirror">visibility</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

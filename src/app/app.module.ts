@@ -1,4 +1,4 @@
-import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { AuthServiceService } from 'src/app/services/auth/auth-service.service';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,13 +12,16 @@ import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlightComponent } from './components/flight/flight.component';
+import { CdkColumnDef } from '@angular/cdk/table';
+import { AvailableTicketsByFlightComponent } from './components/available-tickets-by-flight/available-tickets-by-flight.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     SignUpComponent,
-    FlightComponent
+    FlightComponent,
+    AvailableTicketsByFlightComponent
   ],
   imports: [
     BrowserModule,
@@ -28,11 +31,12 @@ import { FlightComponent } from './components/flight/flight.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     AuthServiceService,
     HttpClient,
+    CdkColumnDef
   ],
   bootstrap: [AppComponent]
 })

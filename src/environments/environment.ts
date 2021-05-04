@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   serverURL: 'http://localhost:3000/api/v1',
-  userUrl: '/users'
+  userUrl: '/users',
+  flightsUrl: '/flights',
+  ticketsUrl: '/tickets'
 };
 
 /*
