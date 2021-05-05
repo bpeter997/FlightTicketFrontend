@@ -1,21 +1,42 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class TicketService {
   private _ticketUrl: string;
 
   constructor(private http: HttpClient) {
     this._ticketUrl = environment.serverURL + environment.ticketsUrl;
-   }
+  }
 
-   getAllTickets(...queryParams: Array<string>): Observable<any> {
-    console.log(queryParams, this._ticketUrl + this.createQueryString(queryParams));
-    return this.http.get(this._ticketUrl + this.createQueryString(queryParams), {
+  getAllTickets(...queryParams: Array<string>): Observable<any> {
+    return this.http.get(
+      this._ticketUrl + this.createQueryString(queryParams),
+      {
+        withCredentials: true,
+        responseType: "json",
+        observe: "response" as "response",
+      }
+    );
+  }
+
+  getTicket(ticketId: string): Observable<any> {
+    return this.http.get(
+      this._ticketUrl + '/' + ticketId,
+      {
+        withCredentials: true,
+        responseType: "json",
+        observe: "response" as "response",
+      }
+    );
+  }
+
+  updateTicket(id: string, body: any): Observable<any> {
+    return this.http.patch(this._ticketUrl + "/" + id, body, {
       withCredentials: true,
       responseType: "json",
       observe: "response" as "response",
@@ -28,5 +49,4 @@ export class TicketService {
       quryUrl = "?" + queryParams.join("&");
     return quryUrl;
   }
-
 }

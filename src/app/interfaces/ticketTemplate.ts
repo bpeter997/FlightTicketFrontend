@@ -1,5 +1,5 @@
 export interface TicketTemplate {
-    id: string,
+    _id: string,
     price: number,
     flight: string,
     email?: string

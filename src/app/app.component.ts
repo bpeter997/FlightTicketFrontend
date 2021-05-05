@@ -14,7 +14,6 @@ export class AppComponent {
   }
 
   setIsAuthenticated(value: boolean) {
-    console.log('hivodik az app component ', value);
     this.isAuthenticated = value;
   }
 

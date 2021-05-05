@@ -23,6 +23,17 @@ export class FlightService {
     });
   }
 
+  getFlight(flightId: string): Observable<any> {
+    return this.http.get(
+      this._flightUrl + '/' + flightId,
+      {
+        withCredentials: true,
+        responseType: "json",
+        observe: "response" as "response",
+      }
+    );
+  }
+
   private createQueryString(queryParams: string[]): string {
     let quryUrl: string = "";
     if (queryParams && queryParams.length + 0)

@@ -27,7 +27,9 @@ export class AvailableTicketsByFlightComponent implements OnInit {
   }
 
   buyTicket(ticket: TicketTemplate) {
-    console.log(ticket);
+    this.ticketService.updateTicket(ticket._id, {email: localStorage.getItem('email')}).subscribe(()=>{
+      this.getTickets(this._availableTicketsQueryString,this._flightQueryString+this.flightService.selectedFlightId);
+    });
   }
 
   constructor(private flightService: FlightService, private ticketService: TicketService, private router: Router) { }
@@ -36,8 +38,6 @@ export class AvailableTicketsByFlightComponent implements OnInit {
     if (this.flightService.selectedFlightId == '') {
       this.router.navigate(['/flights']);
     }
-    console.log(this.flightService.selectedFlightId);
-    
     this.getTickets(this._availableTicketsQueryString,this._flightQueryString+this.flightService.selectedFlightId);
   }
 
