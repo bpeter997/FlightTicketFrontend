@@ -1,9 +1,7 @@
 import { Router } from '@angular/router';
 import { FlightTemplate } from '../../interfaces/flightTemplate';
-import { Observable } from 'rxjs';
 import { FlightService } from './../../services/flight/flight.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -19,9 +17,9 @@ export class FlightComponent implements OnInit {
 
   constructor(private flightService: FlightService, private router: Router) { }
 
-  getFlights(...params: Array<string>) {
+  getFlights(params: Array<string>) {
     this.flightService.selectedFlightId = '';
-    this.flightService.getAllFlights(...params).subscribe(data => {
+    this.flightService.getAllFlights(params).subscribe(data => {
       const tempFlights: Array<FlightTemplate> = []; 
       this.flights = data.body.data.flights;
       this.createDataForTable(tempFlights);
@@ -51,7 +49,7 @@ export class FlightComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFlights();
+    this.getFlights([]);
   }
 
 }

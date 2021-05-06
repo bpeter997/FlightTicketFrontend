@@ -7,7 +7,8 @@ export const environment = {
   serverURL: 'http://localhost:3000/api/v1',
   userUrl: '/users',
   flightsUrl: '/flights',
-  ticketsUrl: '/tickets'
+  ticketsUrl: '/tickets',
+  airportstUrl: '/airports'
 };
 
 /*

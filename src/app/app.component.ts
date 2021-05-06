@@ -7,14 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isAuthenticated: boolean;
+  isAdmin: boolean;
   title = 'FlightTicketFrontend';
 
   constructor(){
-    this.isAuthenticated = false
-  }
-
-  setIsAuthenticated(value: boolean) {
-    this.isAuthenticated = value;
+    this.isAuthenticated = false;
+    this.isAdmin = false;
   }
 
 }

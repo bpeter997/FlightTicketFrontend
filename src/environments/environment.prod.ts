@@ -3,5 +3,6 @@ export const environment = {
   serverURL: 'https://flightticketbackend.herokuapp.com/api/v1',
   userUrl: '/users',
   flightsUrl: '/flights',
-  ticketsUrl: '/tickets'
+  ticketsUrl: '/tickets',
+  airportstUrl: '/airports'
 };

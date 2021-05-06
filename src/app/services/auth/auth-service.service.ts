@@ -39,7 +39,7 @@ export class AuthServiceService {
       { email: email, password: password },
       {
         withCredentials: true,
-        responseType: "text",
+        responseType: "json",
         observe: "response" as "response",
       }
     );

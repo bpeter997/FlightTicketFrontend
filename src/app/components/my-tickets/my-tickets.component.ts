@@ -15,7 +15,7 @@ export class MyTicketsComponent implements OnInit {
 
   myTickets: Array<MyTicketTemplate> = [];
   dataSource = new MatTableDataSource<MyTicketTemplate>(this.myTickets);
-  displayedColumns: Array<string> = ['Price', 'Buy'];
+  displayedColumns: Array<string> = ['From', 'To', 'Start', 'Price'];
 
   private _availableTicketsQueryString: string = 'email=' + localStorage.getItem('email');
 
@@ -27,13 +27,11 @@ export class MyTicketsComponent implements OnInit {
       const tickets: Array<TicketTemplate> = ticketData.body.data.tickets;
       for (const ticket of tickets) {
         this.flightService.getFlight(ticket.flight).subscribe(flightData => {
-            const flight = flightData.body.data.flight
-            this.myTickets.push({from: flight.from, to: flight.to, start: flight.start, price: ticket.price})
+            const flight = flightData.body.data.flight;
+            this.myTickets.push({from: flight.from.location, to: flight.to.location, start: flight.startDate, price: ticket.price});
+            this.dataSource.data = this.myTickets;
         });
       }
-      this.dataSource.data = this.myTickets;
-      console.log(this.myTickets);
-      
     });
   }
 

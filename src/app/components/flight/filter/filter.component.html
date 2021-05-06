@@ -1,0 +1,24 @@
+<div id="MainContainer">
+  <form class="filter-form" fxLayout="row" [formGroup]="filterFormGroup">
+    <mat-form-field class="element">
+      <mat-label>From</mat-label>
+      <input matInput placeholder="Ex. Budapest" value="" formControlName="from"/>
+    </mat-form-field>
+
+    <mat-form-field class="inputBox" class="element">
+      <mat-label>To</mat-label>
+      <input matInput placeholder="Ex. New York" value="" formControlName="to"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="element">
+      <mat-label>Select start date!</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="startDate"/>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-icon-button color="warn" (click)="queryByFilters()">
+        <mat-icon class="mat-icon-rtl-mirror">search</mat-icon>
+      </button>
+  </form>
+</div>

@@ -27,6 +27,7 @@ export class SigninComponent implements OnInit {
         localStorage.setItem('email', this.signInFormGroup.value.email);
         this.router.navigate(['/flights']);
         this.appComponent.isAuthenticated = true;
+        this.appComponent.isAdmin = (msg.body.role == 'admin')
       }, error => {
         console.log(error);
       });
@@ -38,10 +39,12 @@ export class SigninComponent implements OnInit {
       this.authServise.logout().subscribe(msg => {
         console.log(msg);
         this.appComponent.isAuthenticated = false;
+        this.appComponent.isAdmin = false;
         localStorage.removeItem('email');
       }, error => {
         console.log(error);
         this.appComponent.isAuthenticated = false;
+        this.appComponent.isAdmin = false;
         localStorage.removeItem('email');
       });
     }
