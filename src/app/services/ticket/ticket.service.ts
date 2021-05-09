@@ -1,3 +1,5 @@
+import { CreateTicketTemplate } from './../../interfaces/createTicketTemplate.';
+import { TicketTemplate } from 'src/app/interfaces/ticketTemplate';
 import { QueryString } from './../../helpers/QueryString';
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
@@ -58,5 +60,13 @@ export class TicketService {
       responseType: "json",
       observe: "response" as "response",
     });
+  }
+
+  createTicket(ticket: CreateTicketTemplate): Observable<any> {
+    return this.http.post(this._ticketUrl, ticket, {
+      withCredentials: true,
+      responseType: "json",
+      observe: "response" as "response",
+    })
   }
 }

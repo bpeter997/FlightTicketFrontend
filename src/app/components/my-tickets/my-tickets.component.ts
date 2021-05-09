@@ -34,6 +34,7 @@ export class MyTicketsComponent implements OnInit {
 
   getMyTicketStats() {
     this.ticketService.getMyTicketStats().subscribe(data => {
+      console.log(data);
       if (data.body.data.ticket.length == 1) {
         this.myStats = data.body.data.ticket[0]
       } else {

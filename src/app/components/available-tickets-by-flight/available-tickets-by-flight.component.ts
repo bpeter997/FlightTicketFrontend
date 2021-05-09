@@ -35,7 +35,8 @@ export class AvailableTicketsByFlightComponent implements OnInit {
   }
 
   buyTicket(ticket: TicketTemplate) {
-    this.ticketService.updateTicket(ticket.id, {email: localStorage.getItem('email')}).subscribe(()=>{
+    console.log(ticket);
+    this.ticketService.updateTicket(ticket._id, {email: localStorage.getItem('email')}).subscribe(()=>{
       this.getTickets(this._availableTicketsQueryString,this._flightQueryString+this.flightService.selectedFlightId);
     });
   }

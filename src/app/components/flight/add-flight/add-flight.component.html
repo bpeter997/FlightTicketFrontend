@@ -12,6 +12,13 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
+        <mat-label>Start hour</mat-label>
+        <input type="number" formControlName="startHour" matInput />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="fill">
         <mat-label>Select arrive date!</mat-label>
         <input matInput [matDatepicker]="picker2" formControlName="arrive" />
         <mat-datepicker-toggle
@@ -20,7 +27,12 @@
         ></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Arrive hour</mat-label>
+        <input type="number" formControlName="arriveHour" matInput />
+      </mat-form-field>
     </div>
+
     <div class="row">
       <mat-form-field appearance="fill">
         <mat-label>From</mat-label>
@@ -61,7 +73,20 @@
     </div>
 
     <div class="row">
-      <button mat-icon-button (click)="createFlight()">Add flight
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input type="number" formControlName="ticketPrice" matInput />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <button
+        mat-icon-button
+        [disabled]="!flightFormGroup.valid"
+        (click)="createFlight(airplanes[0])"
+      >
+        Add flight
+        <mat-icon class="material-icons">queue</mat-icon>
       </button>
     </div>
   </div>

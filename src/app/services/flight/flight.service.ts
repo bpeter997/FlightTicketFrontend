@@ -1,3 +1,4 @@
+import { CreateFlightTemplate } from './../../interfaces/createFlightTemplate';
 import { QueryString } from "./../../helpers/QueryString";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
@@ -41,6 +42,14 @@ export class FlightService {
       responseType: "json",
       observe: "response" as "response",
     });
+  }
+
+  createFlight(flight: CreateFlightTemplate): Observable<any> {
+    return this.http.post(this._flightUrl, flight, {
+      withCredentials: true,
+      responseType: "json",
+      observe: "response" as "response",
+    })
   }
 
   getMostPopularFlight(): Observable<any> {
