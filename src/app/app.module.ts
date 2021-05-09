@@ -16,6 +16,7 @@ import { CdkColumnDef } from '@angular/cdk/table';
 import { AvailableTicketsByFlightComponent } from './components/available-tickets-by-flight/available-tickets-by-flight.component';
 import { MyTicketsComponent } from './components/my-tickets/my-tickets.component';
 import { FilterComponent } from './components/flight/filter/filter.component';
+import { AddFlightComponent } from './components/flight/add-flight/add-flight.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FilterComponent } from './components/flight/filter/filter.component';
     FlightComponent,
     AvailableTicketsByFlightComponent,
     MyTicketsComponent,
-    FilterComponent
+    FilterComponent,
+    AddFlightComponent
   ],
   imports: [
     BrowserModule,

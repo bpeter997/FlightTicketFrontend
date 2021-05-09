@@ -8,7 +8,9 @@ export const environment = {
   userUrl: '/users',
   flightsUrl: '/flights',
   ticketsUrl: '/tickets',
-  airportstUrl: '/airports'
+  airportstUrl: '/airports',
+  airplanesUrl: '/airplanes',
+  airlinesUrl: '/airlines'
 };
 
 /*

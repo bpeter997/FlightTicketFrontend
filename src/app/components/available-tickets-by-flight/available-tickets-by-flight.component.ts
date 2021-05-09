@@ -1,9 +1,10 @@
 import { TicketService } from './../../services/ticket/ticket.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FlightService } from 'src/app/services/flight/flight.service';
 import { TicketTemplate } from 'src/app/interfaces/ticketTemplate';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-available-tickets-by-flight',
@@ -19,6 +20,13 @@ export class AvailableTicketsByFlightComponent implements OnInit {
   private _availableTicketsQueryString: string = 'email[exists]=false';
   private _flightQueryString: string = 'flight=';
 
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   getTickets(...params: Array<string>) {
     this.ticketService.getAllTickets(...params).subscribe(data => { 
       this.availableTickets = data.body.data.tickets;
@@ -27,7 +35,7 @@ export class AvailableTicketsByFlightComponent implements OnInit {
   }
 
   buyTicket(ticket: TicketTemplate) {
-    this.ticketService.updateTicket(ticket._id, {email: localStorage.getItem('email')}).subscribe(()=>{
+    this.ticketService.updateTicket(ticket.id, {email: localStorage.getItem('email')}).subscribe(()=>{
       this.getTickets(this._availableTicketsQueryString,this._flightQueryString+this.flightService.selectedFlightId);
     });
   }
@@ -39,6 +47,7 @@ export class AvailableTicketsByFlightComponent implements OnInit {
       this.router.navigate(['/flights']);
     }
     this.getTickets(this._availableTicketsQueryString,this._flightQueryString+this.flightService.selectedFlightId);
+    this.dataSource.paginator = this.paginator;
   }
 
 }

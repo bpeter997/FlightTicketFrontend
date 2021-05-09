@@ -1,4 +1,4 @@
-import { QueryString } from './../../helpers/QueryString';
+import { QueryString } from "./../../helpers/QueryString";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -12,21 +12,13 @@ export class FlightService {
   private _selectedFlightId: string;
 
   constructor(private http: HttpClient) {
-    this._selectedFlightId = '';
+    this._selectedFlightId = "";
     this._flightUrl = environment.serverURL + environment.flightsUrl;
   }
 
   getAllFlights(queryParams: Array<string>): Observable<any> {
-    return this.http.get(this._flightUrl + QueryString.createQueryString(queryParams), {
-      withCredentials: true,
-      responseType: "json",
-      observe: "response" as "response",
-    });
-  }
-
-  getFlight(flightId: string): Observable<any> {
     return this.http.get(
-      this._flightUrl + '/' + flightId,
+      this._flightUrl + QueryString.createQueryString(queryParams),
       {
         withCredentials: true,
         responseType: "json",
@@ -34,15 +26,36 @@ export class FlightService {
       }
     );
   }
-  
-  public get selectedFlightId() : string {
-    return this._selectedFlightId
+
+  getFlight(flightId: string): Observable<any> {
+    return this.http.get(this._flightUrl + "/" + flightId, {
+      withCredentials: true,
+      responseType: "json",
+      observe: "response" as "response",
+    });
   }
 
-  
-  public set selectedFlightId(v : string) {
+  deleteFlight(flightId: string): Observable<any> {
+    return this.http.delete(this._flightUrl + "/" + flightId, {
+      withCredentials: true,
+      responseType: "json",
+      observe: "response" as "response",
+    });
+  }
+
+  getMostPopularFlight(): Observable<any> {
+    return this.http.get(this._flightUrl + "/stats/mostPopular", {
+      withCredentials: true,
+      responseType: "json",
+      observe: "response" as "response",
+    });
+  }
+
+  public get selectedFlightId(): string {
+    return this._selectedFlightId;
+  }
+
+  public set selectedFlightId(v: string) {
     this._selectedFlightId = v;
   }
-  
-  
 }

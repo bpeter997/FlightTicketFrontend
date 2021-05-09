@@ -1,3 +1,4 @@
+import { QueryString } from './../../helpers/QueryString';
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -13,9 +14,20 @@ export class TicketService {
     this._ticketUrl = environment.serverURL + environment.ticketsUrl;
   }
 
+  getMyTicketStats(): Observable<any> {
+    return this.http.get(
+      this._ticketUrl + "/myTicketStats/" + localStorage.getItem("email"),
+      {
+        withCredentials: true,
+        responseType: "json",
+        observe: "response" as "response",
+      }
+    );
+  }
+
   getAllTickets(...queryParams: Array<string>): Observable<any> {
     return this.http.get(
-      this._ticketUrl + this.createQueryString(queryParams),
+      this._ticketUrl + QueryString.createQueryString(queryParams),
       {
         withCredentials: true,
         responseType: "json",
@@ -25,14 +37,19 @@ export class TicketService {
   }
 
   getTicket(ticketId: string): Observable<any> {
-    return this.http.get(
-      this._ticketUrl + '/' + ticketId,
-      {
-        withCredentials: true,
-        responseType: "json",
-        observe: "response" as "response",
-      }
-    );
+    return this.http.get(this._ticketUrl + "/" + ticketId, {
+      withCredentials: true,
+      responseType: "json",
+      observe: "response" as "response",
+    });
+  }
+
+  deleteTicket(ticketId: string): Observable<any> {
+    return this.http.delete(this._ticketUrl + "/" + ticketId, {
+      withCredentials: true,
+      responseType: "json",
+      observe: "response" as "response",
+    });
   }
 
   updateTicket(id: string, body: any): Observable<any> {
@@ -41,12 +58,5 @@ export class TicketService {
       responseType: "json",
       observe: "response" as "response",
     });
-  }
-
-  private createQueryString(queryParams: string[]): string {
-    let quryUrl: string = "";
-    if (queryParams && queryParams.length + 0)
-      quryUrl = "?" + queryParams.join("&");
-    return quryUrl;
   }
 }

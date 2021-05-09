@@ -6,4 +6,5 @@ export interface FlightTemplate {
     to: string;
     airline: string[];
     airplane: string[];
+    transfer?: string[];
 }

@@ -1,54 +1,73 @@
 <app-filter (queryStringByFilter)="getFlights($event)"></app-filter>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="From">
-    <th mat-header-cell *matHeaderCellDef>From</th>
-    <td mat-cell *matCellDef="let flight">{{ flight.from }}</td>
-  </ng-container>
 
-  <ng-container matColumnDef="To">
-    <th mat-header-cell *matHeaderCellDef>To</th>
-    <td mat-cell *matCellDef="let flight">{{ flight.to }}</td>
-  </ng-container>
+<mat-card>
+  <mat-card-title>Most popular flight</mat-card-title>
+  <mat-card-content>
+    {{ mostPopularFlight }}
+  </mat-card-content>
+</mat-card>
 
-  <ng-container matColumnDef="Start">
-    <th mat-header-cell *matHeaderCellDef>Start</th>
-    <td mat-cell *matCellDef="let flight">
-      {{ flight.start | date: "medium" }}
-    </td>
-  </ng-container>
+<div class="tableContainer">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="From">
+      <th mat-header-cell *matHeaderCellDef>From</th>
+      <td mat-cell *matCellDef="let flight">{{ flight.from }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="Arrive">
-    <th mat-header-cell *matHeaderCellDef>Arrive</th>
-    <td mat-cell *matCellDef="let flight">
-      {{ flight.arrive | date: "medium" }}
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="To">
+      <th mat-header-cell *matHeaderCellDef>To</th>
+      <td mat-cell *matCellDef="let flight">{{ flight.to }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="Airplane">
-    <th mat-header-cell *matHeaderCellDef>Airplane</th>
-    <td mat-cell *matCellDef="let flight">
-      <div *ngFor="let airplane of flight.airplane">
-        {{ airplane.type }}
-      </div>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="Start">
+      <th mat-header-cell *matHeaderCellDef>Start</th>
+      <td mat-cell *matCellDef="let flight">
+        {{ flight.start | date: "medium" }}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Airline">
-    <th mat-header-cell *matHeaderCellDef>Airline</th>
-    <td mat-cell *matCellDef="let flight">
-      <div *ngFor="let airline of flight.airline">
-        {{ airline.name }}
-      </div>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="Arrive">
+      <th mat-header-cell *matHeaderCellDef>Arrive</th>
+      <td mat-cell *matCellDef="let flight">
+        {{ flight.arrive | date: "medium" }}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Tickets">
-    <th mat-header-cell *matHeaderCellDef>Tickets</th>
-    <td mat-cell *matCellDef="let flight">
-        <mat-icon (click)="openTicketsPage(flight)" class="mat-icon-rtl-mirror">visibility</mat-icon>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="Airplane">
+      <th mat-header-cell *matHeaderCellDef>Airplane</th>
+      <td mat-cell *matCellDef="let flight">
+        <div *ngFor="let airplane of flight.airplane">
+          {{ airplane.type }}
+        </div>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <ng-container matColumnDef="Airline">
+      <th mat-header-cell *matHeaderCellDef>Airline</th>
+      <td mat-cell *matCellDef="let flight">
+        <div *ngFor="let airline of flight.airline">
+          {{ airline.name }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Tickets">
+      <th mat-header-cell *matHeaderCellDef>Tickets</th>
+      <td mat-cell *matCellDef="let flight">
+        <button mat-icon-button (click)="openTicketsPage(flight)">
+          <mat-icon class="mat-icon-rtl-mirror">visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteFlight(flight)">
+          <mat-icon class="mat-icon-rtl-mirror">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
