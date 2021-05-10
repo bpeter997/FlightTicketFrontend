@@ -1,3 +1,4 @@
+import { ModifiFlightComponent } from './components/flight/modifi-flight/modifi-flight.component';
 import { AddFlightComponent } from './components/flight/add-flight/add-flight.component';
 import { MyTicketsComponent } from './components/my-tickets/my-tickets.component';
 import { AvailableTicketsByFlightComponent } from './components/available-tickets-by-flight/available-tickets-by-flight.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'flights', component: FlightComponent, canActivate: [AuthGuard] },
   { path: 'tickets', component: AvailableTicketsByFlightComponent, canActivate: [AuthGuard] },
   { path: 'mytickets', component: MyTicketsComponent, canActivate: [AuthGuard] },
-  { path: 'addFlight', component: AddFlightComponent, canActivate: [AuthGuard] }
+  { path: 'addFlight', component: AddFlightComponent, canActivate: [AuthGuard] },
+  { path: 'updateFlight/:id', component: ModifiFlightComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

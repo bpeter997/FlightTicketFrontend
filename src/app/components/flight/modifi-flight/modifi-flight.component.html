@@ -1,0 +1,87 @@
+<form [formGroup]="flightFormGroup">
+    <div class="container">
+      <div class="row">
+        <mat-form-field appearance="fill">
+          <mat-label>Select start date!</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="start" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Start hour</mat-label>
+          <input type="number" formControlName="startHour" matInput />
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+        <mat-form-field appearance="fill">
+          <mat-label>Select arrive date!</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="arrive" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Arrive hour</mat-label>
+          <input type="number" formControlName="arriveHour" matInput />
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+        <mat-form-field appearance="fill">
+          <mat-label>From</mat-label>
+          <mat-select matNativeControl formControlName="from">
+            <mat-option *ngFor="let airport of airports" [value]="airport.id">
+              {{ airport.location }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>To</mat-label>
+          <mat-select matNativeControl formControlName="to">
+            <mat-option *ngFor="let airport of airports" [value]="airport.id">
+              {{ airport.location }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill">
+          <mat-label>Airplane</mat-label>
+          <mat-select matNativeControl formControlName="airplane">
+            <mat-option *ngFor="let airplane of airplanes" [value]="airplane.id">
+              {{ airplane.licensePlate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Airline</mat-label>
+          <mat-select matNativeControl formControlName="airline">
+            <mat-option *ngFor="let airline of airlines" [value]="airline.id">
+              {{ airline.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+        <button
+          mat-icon-button
+          [disabled]="!flightFormGroup.valid"
+          (click)="updateFlight()"
+        >
+          Update flight
+          <mat-icon class="material-icons">upgrade</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+  

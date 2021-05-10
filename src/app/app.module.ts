@@ -17,6 +17,7 @@ import { AvailableTicketsByFlightComponent } from './components/available-ticket
 import { MyTicketsComponent } from './components/my-tickets/my-tickets.component';
 import { FilterComponent } from './components/flight/filter/filter.component';
 import { AddFlightComponent } from './components/flight/add-flight/add-flight.component';
+import { ModifiFlightComponent } from './components/flight/modifi-flight/modifi-flight.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddFlightComponent } from './components/flight/add-flight/add-flight.co
     AvailableTicketsByFlightComponent,
     MyTicketsComponent,
     FilterComponent,
-    AddFlightComponent
+    AddFlightComponent,
+    ModifiFlightComponent
   ],
   imports: [
     BrowserModule,

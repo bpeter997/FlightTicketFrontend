@@ -36,6 +36,10 @@ export class FlightComponent implements OnInit, AfterViewInit {
     })
   }
 
+  updateFlight(flight: FlightTemplate) {
+    this.router.navigate(['/updateFlight', flight.id])
+  }
+
   deleteFlight(flight: FlightTemplate) {
     console.log(flight);
     this.flightService.deleteFlight(flight.id).subscribe(msg => {
