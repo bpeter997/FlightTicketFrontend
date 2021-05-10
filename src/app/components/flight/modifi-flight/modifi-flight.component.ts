@@ -1,4 +1,3 @@
-import { FlightTemplate } from "./../../../interfaces/flightTemplate";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
@@ -6,7 +5,6 @@ import { AirlineTemplate } from "src/app/interfaces/airlineTemplate";
 import { AirplaneTemplate } from "src/app/interfaces/airplaneTemplate";
 import { AirportTemplate } from "src/app/interfaces/airportTemplate";
 import { CreateFlightTemplate } from "src/app/interfaces/createFlightTemplate";
-import { CreateTicketTemplate } from "src/app/interfaces/createTicketTemplate.";
 import { AirlineService } from "src/app/services/airline/airline.service";
 import { AirplaneService } from "src/app/services/airplane/airplane.service";
 import { AirportService } from "src/app/services/airport/airport.service";
