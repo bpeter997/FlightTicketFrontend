@@ -57,10 +57,10 @@
         <button mat-icon-button (click)="openTicketsPage(flight)">
           <mat-icon class="mat-icon-rtl-mirror">visibility</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deleteFlight(flight)">
+        <button mat-icon-button *ngIf="isAdmin" color="warn" (click)="deleteFlight(flight)">
           <mat-icon class="mat-icon-rtl-mirror">delete</mat-icon>
         </button>
-        <button mat-icon-button (click)="updateFlight(flight)">
+        <button mat-icon-button *ngIf="isAdmin" (click)="updateFlight(flight)">
           <mat-icon class="mat-icon-rtl-mirror">settings</mat-icon>
         </button>
       </td>

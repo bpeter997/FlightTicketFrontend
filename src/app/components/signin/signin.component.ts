@@ -23,7 +23,7 @@ export class SigninComponent implements OnInit {
   signIn() {
     if (this.signInFormGroup.valid) {
       this.authServise.login(this.signInFormGroup.value.email, this.signInFormGroup.value.password).subscribe(msg => {
-        console.log(msg, '  ez a login msg');
+        localStorage.setItem('role', msg.body.role);
         localStorage.setItem('email', this.signInFormGroup.value.email);
         this.router.navigate(['/flights']);
         this.appComponent.isAuthenticated = true;
@@ -41,11 +41,13 @@ export class SigninComponent implements OnInit {
         this.appComponent.isAuthenticated = false;
         this.appComponent.isAdmin = false;
         localStorage.removeItem('email');
+        localStorage.removeItem('role');
       }, error => {
         console.log(error);
         this.appComponent.isAuthenticated = false;
         this.appComponent.isAdmin = false;
         localStorage.removeItem('email');
+        localStorage.removeItem('role');
       });
     }
   }
