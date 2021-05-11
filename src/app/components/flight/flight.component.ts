@@ -66,7 +66,7 @@ export class FlightComponent implements OnInit, AfterViewInit {
   getFlights(params: Array<string>) {
     this.flightService.selectedFlightId = '';
     this.flightService.getAllFlights(params).subscribe(data => {
-      console.log(data);
+      console.log(data.headers);
       const tempFlights: Array<FlightTemplate> = []; 
       this.flights = data.body.data.flights;
       this.createDataForTable(tempFlights);
