@@ -23,13 +23,13 @@ export class SigninComponent implements OnInit {
   signIn() {
     if (this.signInFormGroup.valid) {
       this.authServise.login(this.signInFormGroup.value.email, this.signInFormGroup.value.password).subscribe(msg => {
-        console.log(msg);
+        console.log(msg, '  ez a login msg');
         localStorage.setItem('email', this.signInFormGroup.value.email);
         this.router.navigate(['/flights']);
         this.appComponent.isAuthenticated = true;
         this.appComponent.isAdmin = (msg.body.role == 'admin')
       }, error => {
-        console.log(error);
+        console.log(error, '  ez a login error');
       });
     };
   }

@@ -23,7 +23,6 @@ export class FlightService {
       {
         withCredentials: true,
         responseType: "json",
-        headers: {secureCookie: 'true'},
         observe: "response" as "response",
       }
     );
